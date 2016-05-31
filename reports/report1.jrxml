@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7ce665f-d43b-42e3-b36b-aaa2859da20b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="fecha_desde" class="java.lang.String"/>
+	<parameter name="fecha_hasta" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+
+     cheques.`id` AS cheques_id,
+     cheques.`terceros` AS cheques_terceros,
+     cheques.`fecha` AS cheques_fecha,
+     cheques.`id_caja` AS cheques_id_caja,
+     cheques.`id_banco` AS cheques_id_banco,
+     cheques.`numero` AS cheques_numero,
+     cheques.`estado` AS cheques_estado,
+     cheques.`cuit` AS cheques_cuit,
+     cheques.`fecha_venc` AS cheques_fecha_venc,
+     cheques.`fecha_cobro` AS cheques_fecha_cobro,
+     cheques.`conciliado` AS cheques_conciliado,
+     cheques.`clearing` AS cheques_clearing,
+     cheques.`importe` AS cheques_importe,
+     cheques.`id_proveedor` AS cheques_id_proveedor,
+     cheques.`id_cliente` AS cheques_id_cliente,
+     cheques.`observaciones` AS cheques_observaciones,
+     cajas.`id` AS cajas_id,
+     cajas.`descripcion` AS cajas_descripcion,
+     bancos.`id` AS bancos_id,
+     bancos.`sucursal` AS bancos_sucursal,
+     bancos.`descripcion` AS bancos_descripcion,
+     bancos.`direccion` AS bancos_direccion,
+     bancos.`localidad` AS bancos_localidad,
+     bancos.`codigo_postal` AS bancos_codigo_postal,
+     bancos.`id_provincia` AS bancos_id_provincia,
+     bancos.`telefono` AS bancos_telefono,
+     bancos.`fax` AS bancos_fax,
+     bancos.`email` AS bancos_email,
+     bancos.`web` AS bancos_web,
+     bancos.`observaciones` AS bancos_observaciones,
+     proveedores.`id` AS proveedores_id,
+     proveedores.`denominacion` AS proveedores_denominacion,
+     proveedores.`direccion` AS proveedores_direccion,
+     proveedores.`localidad` AS proveedores_localidad,
+     proveedores.`codigo_postal` AS proveedores_codigo_postal,
+     proveedores.`id_provincia` AS proveedores_id_provincia,
+     proveedores.`telefono` AS proveedores_telefono,
+     proveedores.`celular` AS proveedores_celular,
+     proveedores.`fax` AS proveedores_fax,
+     proveedores.`email` AS proveedores_email,
+     proveedores.`web` AS proveedores_web,
+     proveedores.`id_tipo_impositivo` AS proveedores_id_tipo_impositivo,
+     proveedores.`documento_impositivo` AS proveedores_documento_impositivo,
+     proveedores.`id_tipo_responsable` AS proveedores_id_tipo_responsable,
+     proveedores.`observaciones` AS proveedores_observaciones,
+     provincias.`id` AS provincias_id,
+     provincias.`descripcion` AS provincias_descripcion
+FROM
+     `clientes` clientes INNER JOIN `cheques` cheques ON clientes.`id` = cheques.`id_cliente`
+     INNER JOIN `cajas` cajas ON cheques.`id_caja` = cajas.`id`
+     INNER JOIN `bancos` bancos ON cheques.`id_banco` = bancos.`id`
+     INNER JOIN `proveedores` proveedores ON cheques.`id_proveedor` = proveedores.`id`
+     INNER JOIN `provincias` provincias ON proveedores.`id_provincia` = provincias.`id`
+     AND provincias.`id` = bancos.`id_provincia`
+     AND provincias.`id` = clientes.`id_provincia`,
+     `parametros` parametros
+WHERE
+     cheques.`fecha` >= $P{fecha_desde}
+     and cheques.`fecha` <> $P{fecha_hasta}]]>
+	</queryString>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupHeader>
+			<band height="27"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement positionType="Float" x="0" y="4" width="802" height="26" forecolor="#000000" uuid="52358e92-46fe-41db-aa5a-5e1ab7e409e7"/>
+					<textElement>
+						<font fontName="Times New Roman" size="16" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["GroupField"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="101" height="18" forecolor="#000000" uuid="eef418f0-5577-4ab7-899a-d2846079a9d7"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Label]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="81e1cc48-60f4-4707-af4b-55bca0f5e77c"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="2" y="0" width="100" height="18" uuid="98daf505-1569-4071-adc9-b4eb22c8546e"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Field"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="c1af3eee-8100-4453-b0bc-f76ddce511b4"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

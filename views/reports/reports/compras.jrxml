@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="compras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="add459f5-2bf6-4a12-9453-d01512cabd17">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     compras.`id` AS compras_id,
+     compras.`mes_fiscal` AS compras_mes_fiscal,
+     compras.`anio_fiscal` AS compras_anio_fiscal,
+     compras.`id_proveedor` AS compras_id_proveedor,
+     compras.`id_tipo_comprobante` AS compras_id_tipo_comprobante,
+     compras.`letra` AS compras_letra,
+     compras.`sucursal` AS compras_sucursal,
+     compras.`nro_comprobante` AS compras_nro_comprobante,
+     compras.`fecha` AS compras_fecha,
+     compras.`id_destino` AS compras_id_destino,
+     compras.`detalle` AS compras_detalle,
+     compras.`neto_gravado` AS compras_neto_gravado,
+     compras.`no_gravado` AS compras_no_gravado,
+     compras.`imp_municipales` AS compras_imp_municipales,
+     compras.`imp_provinciales` AS compras_imp_provinciales,
+     compras.`imp_nacionales` AS compras_imp_nacionales,
+     compras.`percepcion` AS compras_percepcion,
+     compras.`ing_brutos` AS compras_ing_brutos,
+     compras.`id_tasa_iva_1` AS compras_id_tasa_iva_1,
+     compras.`tasa_1_iva` AS compras_tasa_1_iva,
+     compras.`importe_1_iva` AS compras_importe_1_iva,
+     compras.`id_tasa_iva_2` AS compras_id_tasa_iva_2,
+     compras.`tasa_2_iva` AS compras_tasa_2_iva,
+     compras.`importe_2_iva` AS compras_importe_2_iva,
+     compras.`id_tasa_iva_3` AS compras_id_tasa_iva_3,
+     compras.`tasa_3_iva` AS compras_tasa_3_iva,
+     compras.`importe_3_iva` AS compras_importe_3_iva,
+     compras.`id_tasa_iva_4` AS compras_id_tasa_iva_4,
+     compras.`tasa_4_iva` AS compras_tasa_4_iva,
+     compras.`importe_4_iva` AS compras_importe_4_iva,
+     compras.`id_tasa_iva_5` AS compras_id_tasa_iva_5,
+     compras.`tasa_5_iva` AS compras_tasa_5_iva,
+     compras.`importe_5_iva` AS compras_importe_5_iva,
+     compras.`total_iva` AS compras_total_iva,
+     compras.`total` AS compras_total
+FROM
+     `compras` compras]]>
+	</queryString>
+	<field name="compras_id" class="java.lang.Integer"/>
+	<field name="compras_mes_fiscal" class="java.lang.Integer"/>
+	<field name="compras_anio_fiscal" class="java.lang.Integer"/>
+	<field name="compras_id_proveedor" class="java.lang.Integer"/>
+	<field name="compras_id_tipo_comprobante" class="java.lang.Integer"/>
+	<field name="compras_letra" class="java.lang.String"/>
+	<field name="compras_sucursal" class="java.lang.Integer"/>
+	<field name="compras_nro_comprobante" class="java.lang.Long"/>
+	<field name="compras_fecha" class="java.sql.Date"/>
+	<field name="compras_id_destino" class="java.lang.Integer"/>
+	<field name="compras_detalle" class="java.lang.String"/>
+	<field name="compras_neto_gravado" class="java.math.BigDecimal"/>
+	<field name="compras_no_gravado" class="java.math.BigDecimal"/>
+	<field name="compras_imp_municipales" class="java.math.BigDecimal"/>
+	<field name="compras_imp_provinciales" class="java.math.BigDecimal"/>
+	<field name="compras_imp_nacionales" class="java.math.BigDecimal"/>
+	<field name="compras_percepcion" class="java.math.BigDecimal"/>
+	<field name="compras_ing_brutos" class="java.math.BigDecimal"/>
+	<field name="compras_id_tasa_iva_1" class="java.lang.Integer"/>
+	<field name="compras_tasa_1_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_1_iva" class="java.math.BigDecimal"/>
+	<field name="compras_id_tasa_iva_2" class="java.lang.Integer"/>
+	<field name="compras_tasa_2_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_2_iva" class="java.math.BigDecimal"/>
+	<field name="compras_id_tasa_iva_3" class="java.lang.Integer"/>
+	<field name="compras_tasa_3_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_3_iva" class="java.math.BigDecimal"/>
+	<field name="compras_id_tasa_iva_4" class="java.lang.Integer"/>
+	<field name="compras_tasa_4_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_4_iva" class="java.math.BigDecimal"/>
+	<field name="compras_id_tasa_iva_5" class="java.lang.Integer"/>
+	<field name="compras_tasa_5_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_5_iva" class="java.math.BigDecimal"/>
+	<field name="compras_total_iva" class="java.math.BigDecimal"/>
+	<field name="compras_total" class="java.math.BigDecimal"/>
+	<group name="compras_anio_fiscal">
+		<groupExpression><![CDATA[$F{compras_anio_fiscal}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#333333" uuid="6ac103fc-9e40-46f5-a7c6-23c90c771566"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{compras_anio_fiscal}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="07cef2de-9497-472f-9554-4e83a7076eea"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="compras_mes_fiscal">
+		<groupExpression><![CDATA[$F{compras_mes_fiscal}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="a876888d-c17e-49d9-8135-1a6b59e11324"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{compras_mes_fiscal}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="07afe879-fee3-4827-89f2-c5db2a2db31a"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Wood SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="9eef9ca6-b6ff-4cf2-aa52-408c93909f46"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Compras]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="e49e1c73-c4d2-40d1-b8a6-0c57d98c36ee"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="16" height="15" uuid="ccbc929e-df63-4d4b-9e23-82adbe663362"/>
+				<text><![CDATA[compras_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="16" y="19" width="16" height="15" uuid="e495b498-1146-48ad-bea9-329edf664b8f"/>
+				<text><![CDATA[compras_id_proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="32" y="19" width="16" height="15" uuid="d1ffd95f-8c40-473b-8e29-ee933994baf6"/>
+				<text><![CDATA[compras_id_tipo_comprobante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="48" y="19" width="16" height="15" uuid="820a5786-8342-471b-b233-c610ce5eab00"/>
+				<text><![CDATA[compras_letra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="64" y="19" width="16" height="15" uuid="fab540f3-2d75-42b2-89a2-7c1575db2814"/>
+				<text><![CDATA[compras_sucursal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="80" y="19" width="16" height="15" uuid="c1235d1a-c937-400f-8c74-8f03102384ae"/>
+				<text><![CDATA[compras_nro_comprobante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="96" y="19" width="16" height="15" uuid="db7cf52f-4b75-4f64-bc12-d1d1bd1f6cbb"/>
+				<text><![CDATA[compras_fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="112" y="19" width="16" height="15" uuid="8b356379-c9e4-4b32-90b4-64cf2a1e8179"/>
+				<text><![CDATA[compras_id_destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="128" y="19" width="16" height="15" uuid="3b1bc73c-3a6f-4f52-b96d-351141084848"/>
+				<text><![CDATA[compras_detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="144" y="19" width="16" height="15" uuid="258fac7b-eade-459e-8619-117b9ea84c6e"/>
+				<text><![CDATA[compras_neto_gravado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="160" y="19" width="16" height="15" uuid="0ce0feaf-d445-427d-8cb2-710bc378f563"/>
+				<text><![CDATA[compras_no_gravado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="176" y="19" width="16" height="15" uuid="5a9d3165-1714-4dfe-acc1-1b6d13e012d0"/>
+				<text><![CDATA[compras_imp_municipales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="192" y="19" width="16" height="15" uuid="0b567da5-d271-4816-bc64-928fe62ac156"/>
+				<text><![CDATA[compras_imp_provinciales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="208" y="19" width="16" height="15" uuid="7bb159d7-f52e-4708-b0f3-d028e7c6e772"/>
+				<text><![CDATA[compras_imp_nacionales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="224" y="19" width="16" height="15" uuid="e57e8eb2-f58d-4d92-a59b-f5b619bef0b5"/>
+				<text><![CDATA[compras_percepcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="240" y="19" width="16" height="15" uuid="ff303075-a0e8-48d3-92d6-88d4b1c6258c"/>
+				<text><![CDATA[compras_ing_brutos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="256" y="19" width="16" height="15" uuid="50be9110-8408-48d5-a1dc-c4c2eebd8534"/>
+				<text><![CDATA[compras_id_tasa_iva_1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="272" y="19" width="16" height="15" uuid="b56e39e9-52ef-4efd-9548-fce49974b683"/>
+				<text><![CDATA[compras_tasa_1_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="288" y="19" width="16" height="15" uuid="d8126a4c-fc62-416d-bbd1-b44da27b8a75"/>
+				<text><![CDATA[compras_importe_1_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="304" y="19" width="16" height="15" uuid="3709133d-99a8-4b79-ba81-b669124508ca"/>
+				<text><![CDATA[compras_id_tasa_iva_2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="320" y="19" width="16" height="15" uuid="f3811b50-306e-407a-9a6c-1d059820e03c"/>
+				<text><![CDATA[compras_tasa_2_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="336" y="19" width="16" height="15" uuid="bbefe098-795b-4e3b-9e9f-2e2add200c08"/>
+				<text><![CDATA[compras_importe_2_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="352" y="19" width="16" height="15" uuid="d709b8f7-4838-4533-ba86-5ee4e83f9c6f"/>
+				<text><![CDATA[compras_id_tasa_iva_3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="19" width="16" height="15" uuid="4a26b6ad-da6b-4ba0-8edf-ab25a365eab7"/>
+				<text><![CDATA[compras_tasa_3_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="384" y="19" width="16" height="15" uuid="124a175d-dbf0-415a-b14a-7ebcc2868967"/>
+				<text><![CDATA[compras_importe_3_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="19" width="16" height="15" uuid="f9a352b3-3b3e-4916-80ef-df9db50887cd"/>
+				<text><![CDATA[compras_id_tasa_iva_4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="416" y="19" width="16" height="15" uuid="30a81c55-cde9-4082-b4d9-69f4f3c3a3dc"/>
+				<text><![CDATA[compras_tasa_4_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="432" y="19" width="16" height="15" uuid="5fdefb80-48c7-4f49-af84-d5ebb7868ee3"/>
+				<text><![CDATA[compras_importe_4_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="448" y="19" width="16" height="15" uuid="b7a3ba8f-eca7-4ba4-9599-d0e8f0f571f1"/>
+				<text><![CDATA[compras_id_tasa_iva_5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="464" y="19" width="16" height="15" uuid="2a0952c4-cdb3-45b8-8c18-d818da3b7427"/>
+				<text><![CDATA[compras_tasa_5_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="19" width="16" height="15" uuid="7e6d86dc-9bda-49a9-bb51-0837362086b8"/>
+				<text><![CDATA[compras_importe_5_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="496" y="19" width="16" height="15" uuid="2754bddd-7d97-4972-989a-7b8d407cff88"/>
+				<text><![CDATA[compras_total_iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="512" y="19" width="16" height="15" uuid="f5249f5d-4689-43e1-bfe0-a472795ef3b5"/>
+				<text><![CDATA[compras_total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="9b924d48-b8e7-40c7-a108-c4b1b3f3ac84"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="16" height="15" uuid="7193a39b-6010-47ea-b8b3-0e312f6ebb03"/>
+				<textFieldExpression><![CDATA[$F{compras_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="16" y="0" width="16" height="15" uuid="3284819d-ee3d-4678-9517-75e2d7afb9e6"/>
+				<textFieldExpression><![CDATA[$F{compras_id_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="32" y="0" width="16" height="15" uuid="1c93fc93-db86-45d6-97c6-e13dc4feb891"/>
+				<textFieldExpression><![CDATA[$F{compras_id_tipo_comprobante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="48" y="0" width="16" height="15" uuid="a4d8f7e6-4289-4c5b-8d57-b79800f8f6b8"/>
+				<textFieldExpression><![CDATA[$F{compras_letra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="64" y="0" width="16" height="15" uuid="a2d96203-7faf-4f7c-80d2-50ec324f8ef4"/>
+				<textFieldExpression><![CDATA[$F{compras_sucursal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="80" y="0" width="16" height="15" uuid="463cb887-2c17-40ef-acca-e46978a43361"/>
+				<textFieldExpression><![CDATA[$F{compras_nro_comprobante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="96" y="0" width="16" height="15" uuid="18bc1759-d29f-4e78-8f5a-ff9b32cfbfd8"/>
+				<textFieldExpression><![CDATA[$F{compras_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="112" y="0" width="16" height="15" uuid="20ecd17f-01a9-4d34-94d7-7d6c768c21f0"/>
+				<textFieldExpression><![CDATA[$F{compras_id_destino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="128" y="0" width="16" height="15" uuid="97ea76e4-043a-4e01-97d2-11bc2a8a73d4"/>
+				<textFieldExpression><![CDATA[$F{compras_detalle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="144" y="0" width="16" height="15" uuid="d1bdd3c4-fcca-4d60-94c3-27ce4c2f8aac"/>
+				<textFieldExpression><![CDATA[$F{compras_neto_gravado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="160" y="0" width="16" height="15" uuid="0422cad7-5a21-41b5-aa5e-d32abc1913b5"/>
+				<textFieldExpression><![CDATA[$F{compras_no_gravado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="176" y="0" width="16" height="15" uuid="cafa152e-3a7f-4ad3-b5eb-e835bf9134b5"/>
+				<textFieldExpression><![CDATA[$F{compras_imp_municipales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="192" y="0" width="16" height="15" uuid="9dc3a62f-c8f3-4d47-86d5-f1e448ba5993"/>
+				<textFieldExpression><![CDATA[$F{compras_imp_provinciales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="208" y="0" width="16" height="15" uuid="f4746439-b8f5-4c0a-94ec-2108281fe149"/>
+				<textFieldExpression><![CDATA[$F{compras_imp_nacionales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="224" y="0" width="16" height="15" uuid="3b59eb00-39f4-4c2e-afac-b3fefb2b607f"/>
+				<textFieldExpression><![CDATA[$F{compras_percepcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="240" y="0" width="16" height="15" uuid="ec986329-6bb6-46bc-b1ff-0500daead0c6"/>
+				<textFieldExpression><![CDATA[$F{compras_ing_brutos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="0" width="16" height="15" uuid="8341215f-88ff-4784-a720-4b2798ad67cc"/>
+				<textFieldExpression><![CDATA[$F{compras_id_tasa_iva_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="272" y="0" width="16" height="15" uuid="6c987cb0-75e5-47b3-bc1b-29addc9346fe"/>
+				<textFieldExpression><![CDATA[$F{compras_tasa_1_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="288" y="0" width="16" height="15" uuid="ef1bbf56-687b-43cd-a39c-59c3016ce4c9"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_1_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="304" y="0" width="16" height="15" uuid="13acc478-ae2a-49f8-bb1a-568b6d435909"/>
+				<textFieldExpression><![CDATA[$F{compras_id_tasa_iva_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="320" y="0" width="16" height="15" uuid="69a99ff2-1be9-494e-a1e7-f7a5c69ed1f8"/>
+				<textFieldExpression><![CDATA[$F{compras_tasa_2_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="336" y="0" width="16" height="15" uuid="60f3a3d6-12a2-4e26-ad6d-5ced2e10883d"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_2_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="352" y="0" width="16" height="15" uuid="021611f0-341c-4b5b-9d6b-420ba91736d1"/>
+				<textFieldExpression><![CDATA[$F{compras_id_tasa_iva_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="368" y="0" width="16" height="15" uuid="2738fd9e-182e-4e85-ba92-172d39e60698"/>
+				<textFieldExpression><![CDATA[$F{compras_tasa_3_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="384" y="0" width="16" height="15" uuid="128e8644-239b-4c45-a3c9-2725a4572814"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_3_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="400" y="0" width="16" height="15" uuid="a0061287-4f9d-469d-89da-79bf0851e68c"/>
+				<textFieldExpression><![CDATA[$F{compras_id_tasa_iva_4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="416" y="0" width="16" height="15" uuid="933fa0f2-4cee-4abb-9f00-665b7c6cc47b"/>
+				<textFieldExpression><![CDATA[$F{compras_tasa_4_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="432" y="0" width="16" height="15" uuid="2b1a01a9-71b0-4b36-a603-ffe41aa3fbc8"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_4_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="448" y="0" width="16" height="15" uuid="30b766be-b467-48a4-808b-9cad9b1aa411"/>
+				<textFieldExpression><![CDATA[$F{compras_id_tasa_iva_5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="464" y="0" width="16" height="15" uuid="10e81cf4-fa9a-4a22-b765-b1b824708d6d"/>
+				<textFieldExpression><![CDATA[$F{compras_tasa_5_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="480" y="0" width="16" height="15" uuid="56f70c31-1b23-42e9-8a98-3e9f5dd5f85a"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_5_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="448" y="16" width="48" height="15" uuid="9496b6c7-ed9c-4d3b-a188-9dce0effd535"/>
+				<textFieldExpression><![CDATA[$F{compras_total_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="496" y="16" width="46" height="15" uuid="4da8ecd9-eb8f-4c00-a1ba-b9eebe16c726"/>
+				<textFieldExpression><![CDATA[$F{compras_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="ca400a9f-0d0d-4861-af50-17b925e1f0e2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="69d49658-e711-4e52-89b5-7a3c9206d346"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="2d2dd5c7-4945-4348-a2e1-3cff0d95f7a7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="4f797665-7b99-4f16-bc9a-9154bd2d2b6b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cheques" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="829fe20b-e93d-4cdb-9b50-45308f9c3f76">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     cheques.`id` AS cheques_id,
+     cheques.`terceros` AS cheques_terceros,
+     cheques.`fecha` AS cheques_fecha,
+     cheques.`id_caja` AS cheques_id_caja,
+     cheques.`id_banco` AS cheques_id_banco,
+     cheques.`numero` AS cheques_numero,
+     cheques.`estado` AS cheques_estado,
+     cheques.`cuit` AS cheques_cuit,
+     cheques.`fecha_venc` AS cheques_fecha_venc,
+     cheques.`fecha_cobro` AS cheques_fecha_cobro,
+     cheques.`conciliado` AS cheques_conciliado,
+     cheques.`clearing` AS cheques_clearing,
+     cheques.`importe` AS cheques_importe,
+     cheques.`id_proveedor` AS cheques_id_proveedor,
+     cheques.`id_cliente` AS cheques_id_cliente,
+     cheques.`observaciones` AS cheques_observaciones
+FROM
+     `cheques` cheques
+WHERE
+     cheques.`fecha` BETWEEN $P{fecha_desde} AND $P{fecha_hasta}]]>
+	</queryString>
+	<field name="cheques_id" class="java.lang.Integer"/>
+	<field name="cheques_terceros" class="java.lang.Boolean"/>
+	<field name="cheques_fecha" class="java.sql.Date"/>
+	<field name="cheques_id_caja" class="java.lang.Integer"/>
+	<field name="cheques_id_banco" class="java.lang.Integer"/>
+	<field name="cheques_numero" class="java.lang.Long"/>
+	<field name="cheques_estado" class="java.lang.String"/>
+	<field name="cheques_cuit" class="java.lang.String"/>
+	<field name="cheques_fecha_venc" class="java.sql.Date"/>
+	<field name="cheques_fecha_cobro" class="java.sql.Date"/>
+	<field name="cheques_conciliado" class="java.lang.Boolean"/>
+	<field name="cheques_clearing" class="java.lang.String"/>
+	<field name="cheques_importe" class="java.math.BigDecimal"/>
+	<field name="cheques_id_proveedor" class="java.lang.Integer"/>
+	<field name="cheques_id_cliente" class="java.lang.Integer"/>
+	<field name="cheques_observaciones" class="java.lang.String"/>
+	<variable name="total_cheques_terceros" class="java.lang.String" resetType="Group" resetGroup="cheques_terceros" calculation="Sum">
+		<variableExpression><![CDATA[$F{cheques_importe}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<filterExpression><![CDATA[($F{cheques_fecha}.compareTo($P{fecha_desde}) >= 0 && $F{cheques_fecha}.compareTo($P{fecha_hasta}) <= 0)]]></filterExpression>
+	<group name="cheques_terceros">
+		<groupExpression><![CDATA[$F{cheques_terceros}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#CC0000" uuid="bf1e88be-caeb-4043-8022-9a5f21c6ed1a"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{cheques_terceros} ? 'propios' : 'terceros' )]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="f7e5ef13-7651-45b5-9457-dca2b0ee1a66"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="cheques_fecha">
+		<groupExpression><![CDATA[$F{cheques_fecha}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="b67165f7-9994-4732-a292-43a03f2a51a6"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cheques_fecha}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="cheques_id_banco">
+		<groupExpression><![CDATA[$F{cheques_id_banco}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="8dbeeca4-e477-4ba3-a536-1950d1326b61"/>
+				<imageExpression><![CDATA["leaf_banner_red.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="8c5c5ea4-802c-45db-9b4b-3d7450e6e69e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Listado de Cheques]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="5be18ab0-34a9-4ce5-8dc5-82ed262c4c3d"/>
+				<text><![CDATA[Leaf Red SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="f6a3e435-aa40-4227-b389-8236570d2600"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="7" height="15" uuid="45689b80-f16c-413d-aeb3-7dfd83a69eaf"/>
+				<text><![CDATA[cheques_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="7" y="19" width="7" height="15" uuid="38dd1545-abfc-4c1a-bb92-5536e0c9a894"/>
+				<text><![CDATA[cheques_id_caja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="14" y="19" width="7" height="15" uuid="68dec318-1aba-45b5-aff8-1bd5e79d500c"/>
+				<text><![CDATA[cheques_numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="21" y="19" width="7" height="15" uuid="e7dcc04a-0fa9-4e23-ac84-cb758b9eeed7"/>
+				<text><![CDATA[cheques_estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="28" y="19" width="7" height="15" uuid="8d397c1b-ca68-4e4f-8fc6-d67dabc1cd70"/>
+				<text><![CDATA[cheques_cuit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="35" y="19" width="7" height="15" uuid="d5adab23-b0f3-4745-8d01-f0b697107e1a"/>
+				<text><![CDATA[cheques_fecha_venc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="42" y="19" width="7" height="15" uuid="3aecf24f-d643-4b2b-a26b-10bf8a2b1a0d"/>
+				<text><![CDATA[cheques_fecha_cobro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="49" y="19" width="7" height="15" uuid="80b07bac-23e6-4947-911a-06f8da81a42d"/>
+				<text><![CDATA[cheques_conciliado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="56" y="19" width="7" height="15" uuid="637bed4a-fedc-4e26-960c-37d12319eed5"/>
+				<text><![CDATA[cheques_clearing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="63" y="19" width="7" height="15" uuid="4a08b9dc-37c9-4441-972b-1ee7f1dcc949"/>
+				<text><![CDATA[cheques_importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="70" y="19" width="7" height="15" uuid="f663e862-bae3-4aed-909f-2e93c3748cef"/>
+				<text><![CDATA[cheques_id_proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="77" y="19" width="7" height="15" uuid="13893e11-9f7e-44dd-81cf-23e10c251294"/>
+				<text><![CDATA[cheques_id_cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="84" y="19" width="7" height="15" uuid="55bc1a99-e4ec-424c-9f97-55c1dc32d6ad"/>
+				<text><![CDATA[cheques_observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="91" y="19" width="7" height="15" uuid="d3cbc2bf-747c-43b5-b430-b39702ccf61f"/>
+				<text><![CDATA[cajas_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="19" width="7" height="15" uuid="ae31c56b-cddc-4dac-b9f2-98f606765d38"/>
+				<text><![CDATA[cajas_descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="105" y="19" width="7" height="15" uuid="11ed3633-1b4d-4adb-8f56-2208537eba04"/>
+				<text><![CDATA[bancos_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="112" y="19" width="7" height="15" uuid="7675bd1f-51be-4ba1-afbd-00f2d29f3e70"/>
+				<text><![CDATA[bancos_sucursal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="119" y="19" width="7" height="15" uuid="37cd55f1-ab89-4005-9c3c-39b534ca34a6"/>
+				<text><![CDATA[bancos_descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="126" y="19" width="7" height="15" uuid="6afff533-9324-400f-8e02-3e6b5e223b4a"/>
+				<text><![CDATA[bancos_direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="133" y="19" width="7" height="15" uuid="396b4e6e-672d-4651-8c73-8275ec6c512e"/>
+				<text><![CDATA[bancos_localidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="140" y="19" width="7" height="15" uuid="d6a9abd1-2da4-459f-9822-aa8e2d007653"/>
+				<text><![CDATA[bancos_codigo_postal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="147" y="19" width="7" height="15" uuid="2a09ab15-3f2f-43db-8975-86c4e02a00e9"/>
+				<text><![CDATA[bancos_id_provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="154" y="19" width="7" height="15" uuid="8112e56c-c125-45b8-9334-4546588e65f2"/>
+				<text><![CDATA[bancos_telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="161" y="19" width="7" height="15" uuid="702b5696-c6d1-43ac-b642-2c461424333c"/>
+				<text><![CDATA[bancos_fax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="168" y="19" width="7" height="15" uuid="3abcc9ae-1b52-4a06-9d92-45ad62e51c13"/>
+				<text><![CDATA[bancos_email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="175" y="19" width="7" height="15" uuid="b80f831e-674c-4641-a29c-70c076bd5a3a"/>
+				<text><![CDATA[bancos_web]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="182" y="19" width="7" height="15" uuid="fa4b5ecb-db56-45c1-a6ff-eae9a3523588"/>
+				<text><![CDATA[bancos_observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="189" y="19" width="7" height="15" uuid="de2c786f-8b1b-4cbc-8445-257f7e23d2ef"/>
+				<text><![CDATA[clientes_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="196" y="19" width="7" height="15" uuid="45f4ceae-ceec-475a-9efe-952f1a92e6b1"/>
+				<text><![CDATA[clientes_denominacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="203" y="19" width="7" height="15" uuid="a2ae1b40-6d42-425f-9681-0f7081d2069b"/>
+				<text><![CDATA[clientes_direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="210" y="19" width="7" height="15" uuid="0ea5a23e-a732-4e3a-b460-6ad631679e26"/>
+				<text><![CDATA[clientes_localidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="217" y="19" width="7" height="15" uuid="a1e80a4f-6cc5-40d4-9101-15e2cab7aa7b"/>
+				<text><![CDATA[clientes_codigo_postal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="224" y="19" width="7" height="15" uuid="01765ba6-2b83-4f8f-8d29-7ffc6680441c"/>
+				<text><![CDATA[clientes_id_provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="231" y="19" width="7" height="15" uuid="f9a4dd67-dc68-4184-8a89-aa09ecb0603b"/>
+				<text><![CDATA[clientes_telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="238" y="19" width="7" height="15" uuid="29051d1d-08fc-40b2-81ca-a6fcf82d4c54"/>
+				<text><![CDATA[clientes_celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="245" y="19" width="7" height="15" uuid="ba71198e-e409-4676-a1ab-279eb6f30356"/>
+				<text><![CDATA[clientes_fax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="252" y="19" width="7" height="15" uuid="4169a75e-4952-41fc-99e4-8be2b350092c"/>
+				<text><![CDATA[clientes_email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="259" y="19" width="7" height="15" uuid="d957577b-cf48-471f-baa2-01043cdfaad3"/>
+				<text><![CDATA[clientes_web]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="266" y="19" width="7" height="15" uuid="4d265084-f10e-4424-b822-e4e0dddffc42"/>
+				<text><![CDATA[clientes_id_tipo_impositivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="273" y="19" width="7" height="15" uuid="08180613-b68b-4e78-a4c5-470136ab453d"/>
+				<text><![CDATA[clientes_documento_impositivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="19" width="7" height="15" uuid="0d802624-46a3-40dc-aa19-8971e2e554db"/>
+				<text><![CDATA[clientes_id_tipo_responsable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="287" y="19" width="7" height="15" uuid="bf5a066e-bb72-44c3-a9ea-5b802f223046"/>
+				<text><![CDATA[clientes_observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="294" y="19" width="7" height="15" uuid="91169af1-4333-41be-9563-9a1793b0931b"/>
+				<text><![CDATA[proveedores_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="301" y="19" width="7" height="15" uuid="249f4f86-1665-4c11-8a81-ef6cfefcaad0"/>
+				<text><![CDATA[proveedores_denominacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="308" y="19" width="7" height="15" uuid="8e9ad70e-5678-4cce-967c-25ec60be369b"/>
+				<text><![CDATA[proveedores_direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="315" y="19" width="7" height="15" uuid="08597f61-d11d-40a1-9ca3-b70eb7affd12"/>
+				<text><![CDATA[proveedores_localidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="322" y="19" width="7" height="15" uuid="62755473-5508-4351-b9aa-4fc1979fd7f7"/>
+				<text><![CDATA[proveedores_codigo_postal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="329" y="19" width="7" height="15" uuid="80dbf1a2-e59f-4d61-b353-c8326a79ec5a"/>
+				<text><![CDATA[proveedores_id_provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="336" y="19" width="7" height="15" uuid="098f4187-2cb1-4c79-8be7-80a5086d9888"/>
+				<text><![CDATA[proveedores_telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="343" y="19" width="7" height="15" uuid="77c5975e-b6f8-4112-b8cd-42e3ddc0dc2f"/>
+				<text><![CDATA[proveedores_celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="350" y="19" width="7" height="15" uuid="70cfb677-4168-4efb-b118-7d09bd3e4e37"/>
+				<text><![CDATA[proveedores_fax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="357" y="19" width="7" height="15" uuid="51079c6f-6322-4b76-9773-b91f6125ffa5"/>
+				<text><![CDATA[proveedores_email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="364" y="19" width="7" height="15" uuid="0a01dda9-bb76-4b98-82fe-4c7b9c20fe65"/>
+				<text><![CDATA[proveedores_web]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="371" y="19" width="7" height="15" uuid="3a6cf6e2-7abf-497b-b800-f676f0dbcfde"/>
+				<text><![CDATA[proveedores_id_tipo_impositivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="378" y="19" width="7" height="15" uuid="b9f31cce-54d1-4692-bb09-76a494a4b0a2"/>
+				<text><![CDATA[proveedores_documento_impositivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="385" y="19" width="7" height="15" uuid="b2d09bdf-8da1-405c-924f-3a5f9554410d"/>
+				<text><![CDATA[proveedores_id_tipo_responsable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="392" y="19" width="7" height="15" uuid="bdabba0d-8ea0-424f-9c7d-93a339ef4387"/>
+				<text><![CDATA[proveedores_observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="399" y="19" width="7" height="15" uuid="f0e90b95-7831-4871-a369-23a7262033de"/>
+				<text><![CDATA[parametros_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="406" y="19" width="7" height="15" uuid="9d3327a1-8c11-43a3-bc39-280ee7afb7b5"/>
+				<text><![CDATA[parametros_denominacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="413" y="19" width="7" height="15" uuid="2ca49741-99c9-48c6-b1c1-04e5e0ce1c3a"/>
+				<text><![CDATA[parametros_domicilio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="420" y="19" width="7" height="15" uuid="d08ca80b-2392-41d7-b4ab-8909ba289d3c"/>
+				<text><![CDATA[parametros_localidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="427" y="19" width="7" height="15" uuid="3fe4da32-f046-4841-8a3d-033dcc341192"/>
+				<text><![CDATA[parametros_id_provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="434" y="19" width="7" height="15" uuid="ac9dfc5e-50a7-4bbf-bdae-1aa6da53858c"/>
+				<text><![CDATA[parametros_fecha_inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="441" y="19" width="7" height="15" uuid="bff15abb-fc81-4561-8942-57b830733830"/>
+				<text><![CDATA[parametros_cuit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="448" y="19" width="7" height="15" uuid="2142b0de-0d7f-420e-8467-553668c8e6b1"/>
+				<text><![CDATA[parametros_id_tipo_responsable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="455" y="19" width="7" height="15" uuid="d6da5a28-b7d2-40f5-b410-9de51d2ce889"/>
+				<text><![CDATA[parametros_nro_agente_retenc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="462" y="19" width="7" height="15" uuid="a519238d-9b28-4097-b34f-538a82bb9266"/>
+				<text><![CDATA[parametros_nro_establec]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="469" y="19" width="7" height="15" uuid="5a051ee1-1523-4492-b642-d750e51e7a0e"/>
+				<text><![CDATA[parametros_enc_linea1_izq]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="476" y="19" width="7" height="15" uuid="6604e440-96a4-4f84-bdf7-1eca9cef2515"/>
+				<text><![CDATA[parametros_enc_linea2_izq]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="483" y="19" width="7" height="15" uuid="ee0af55f-73ec-4365-b29a-dbd24b3b9a37"/>
+				<text><![CDATA[parametros_enc_linea3_izq]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="490" y="19" width="7" height="15" uuid="125e95b2-e361-439c-bd4c-fb17d56589c9"/>
+				<text><![CDATA[parametros_enc_linea1_der]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="497" y="19" width="7" height="15" uuid="94a2c10a-ea25-4ee2-8857-8b2bd327457e"/>
+				<text><![CDATA[parametros_enc_linea2_der]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="504" y="19" width="7" height="15" uuid="c4f5eae3-6c3e-4333-a2a0-9bfbdf383f47"/>
+				<text><![CDATA[parametros_enc_linea3_der]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="ed5849cc-5b79-487d-828d-4456368bd588"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="7" height="15" uuid="ccf93c5e-1721-4e1f-8673-906b5de7881a"/>
+				<textFieldExpression><![CDATA[$F{cheques_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="7" y="0" width="7" height="15" uuid="c55eb851-f7bb-4f32-b848-b1ee1eaa4006"/>
+				<textFieldExpression><![CDATA[$F{cheques_id_caja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="14" y="0" width="7" height="15" uuid="308e0e90-aa9b-4505-8d3b-4bf8a01449e4"/>
+				<textFieldExpression><![CDATA[$F{cheques_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="21" y="0" width="7" height="15" uuid="9c68be9d-7a7f-4064-a3c1-6da890ab9223"/>
+				<textFieldExpression><![CDATA[$F{cheques_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="28" y="0" width="7" height="15" uuid="7a30160a-ebb1-4596-af49-e169903c67ad"/>
+				<textFieldExpression><![CDATA[$F{cheques_cuit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="35" y="0" width="7" height="15" uuid="ec824437-d92d-45d9-8916-5cd579ff3054"/>
+				<textFieldExpression><![CDATA[$F{cheques_fecha_venc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="42" y="0" width="7" height="15" uuid="413a417b-0612-42f1-9b5d-56b6ad462a09"/>
+				<textFieldExpression><![CDATA[$F{cheques_fecha_cobro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="49" y="0" width="7" height="15" uuid="0497b4b8-d6c4-4525-8f93-d379e16b5223"/>
+				<textFieldExpression><![CDATA[$F{cheques_conciliado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="56" y="0" width="7" height="15" uuid="c5f09140-c0b4-45d0-9447-edd6270e896e"/>
+				<textFieldExpression><![CDATA[$F{cheques_clearing}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="123" y="0" width="87" height="15" uuid="3f9c9b92-151a-4374-9291-64d26b1f1468"/>
+				<textFieldExpression><![CDATA[$F{cheques_importe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="70" y="0" width="7" height="15" uuid="5077d1b2-f7dd-4c45-a17a-5b7f086ab1f9"/>
+				<textFieldExpression><![CDATA[$F{cheques_id_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="77" y="0" width="7" height="15" uuid="d2dabc5e-8417-4f8e-859e-11431eadc8bd"/>
+				<textFieldExpression><![CDATA[$F{cheques_id_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="84" y="0" width="7" height="15" uuid="6e8deebe-021e-4c8c-8f5b-0bc58605a83b"/>
+				<textFieldExpression><![CDATA[$F{cheques_observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="c80f8412-1db5-48a3-925b-dfd23f58dc2f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="bfef9038-cbdd-43e2-8d70-886e9acf8db3"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="766d07ff-bc26-413d-853b-4b69c57c08f8"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="771961a0-af7a-47be-a0d9-7b12a0e211d8"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

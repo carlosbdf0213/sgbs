@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="578900e3-0c5e-4102-8e31-dc6c573ab805">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     compras.`id` AS compras_id,
+     compras.`mes_fiscal` AS compras_mes_fiscal,
+     compras.`anio_fiscal` AS compras_anio_fiscal,
+     compras.`id_proveedor` AS compras_id_proveedor,
+     compras.`id_tipo_comprobante` AS compras_id_tipo_comprobante,
+     compras.`letra` AS compras_letra,
+     compras.`sucursal` AS compras_sucursal,
+     compras.`nro_comprobante` AS compras_nro_comprobante,
+     compras.`fecha` AS compras_fecha,
+     compras.`id_destino` AS compras_id_destino,
+     compras.`detalle` AS compras_detalle,
+     compras.`neto_gravado` AS compras_neto_gravado,
+     compras.`no_gravado` AS compras_no_gravado,
+     compras.`imp_municipales` AS compras_imp_municipales,
+     compras.`imp_provinciales` AS compras_imp_provinciales,
+     compras.`imp_nacionales` AS compras_imp_nacionales,
+     compras.`percepcion` AS compras_percepcion,
+     compras.`ing_brutos` AS compras_ing_brutos,
+     compras.`tasa_1_iva` AS compras_tasa_1_iva,
+     compras.`importe_1_iva` AS compras_importe_1_iva,
+     compras.`tasa_2_iva` AS compras_tasa_2_iva,
+     compras.`importe_2_iva` AS compras_importe_2_iva,
+     compras.`tasa_3_iva` AS compras_tasa_3_iva,
+     compras.`importe_3_iva` AS compras_importe_3_iva,
+     compras.`tasa_4_iva` AS compras_tasa_4_iva,
+     compras.`importe_4_iva` AS compras_importe_4_iva,
+     compras.`tasa_5_iva` AS compras_tasa_5_iva,
+     compras.`importe_5_iva` AS compras_importe_5_iva,
+     compras.`perc_iva` AS compras_perc_iva,
+     compras.`perc_dgr` AS compras_perc_dgr,
+     compras.`imp_internos` AS compras_imp_internos,
+     compras.`total` AS compras_total,
+     proveedores.`id` AS proveedores_id,
+     proveedores.`denominacion` AS proveedores_denominacion,
+     proveedores.`documento_impositivo` AS proveedores_documento_impositivo,
+     parametros.`id` AS parametros_id,
+     parametros.`denominacion` AS parametros_denominacion,
+     parametros.`domicilio` AS parametros_domicilio,
+     parametros.`localidad` AS parametros_localidad,
+     parametros.`id_provincia` AS parametros_id_provincia,
+     parametros.`fecha_inicio` AS parametros_fecha_inicio,
+     parametros.`cuit` AS parametros_cuit,
+     parametros.`id_tipo_responsable` AS parametros_id_tipo_responsable,
+     parametros.`nro_agente_retenc` AS parametros_nro_agente_retenc,
+     parametros.`nro_establec` AS parametros_nro_establec,
+     parametros.`enc_linea1_izq` AS parametros_enc_linea1_izq,
+     parametros.`enc_linea2_izq` AS parametros_enc_linea2_izq,
+     parametros.`enc_linea3_izq` AS parametros_enc_linea3_izq,
+     parametros.`enc_linea1_der` AS parametros_enc_linea1_der,
+     parametros.`enc_linea2_der` AS parametros_enc_linea2_der,
+     parametros.`enc_linea3_der` AS parametros_enc_linea3_der,
+     parametros.`fecha_desde` AS parametros_fecha_desde,
+     parametros.`fecha_hasta` AS parametros_fecha_hasta
+FROM
+     `proveedores` proveedores INNER JOIN `compras` compras ON proveedores.`id` = compras.`id_proveedor`,
+     `parametros` parametros
+WHERE
+     compras.`fecha` BETWEEN  parametros.`fecha_desde`
+     AND  parametros.`fecha_hasta`]]>
+	</queryString>
+	<field name="compras_id" class="java.lang.Integer"/>
+	<field name="compras_mes_fiscal" class="java.lang.Integer"/>
+	<field name="compras_anio_fiscal" class="java.lang.Integer"/>
+	<field name="compras_id_proveedor" class="java.lang.Integer"/>
+	<field name="compras_id_tipo_comprobante" class="java.lang.Integer"/>
+	<field name="compras_letra" class="java.lang.String"/>
+	<field name="compras_sucursal" class="java.lang.Integer"/>
+	<field name="compras_nro_comprobante" class="java.lang.Long"/>
+	<field name="compras_fecha" class="java.sql.Date"/>
+	<field name="compras_id_destino" class="java.lang.Integer"/>
+	<field name="compras_detalle" class="java.lang.String"/>
+	<field name="compras_neto_gravado" class="java.math.BigDecimal"/>
+	<field name="compras_no_gravado" class="java.math.BigDecimal"/>
+	<field name="compras_imp_municipales" class="java.math.BigDecimal"/>
+	<field name="compras_imp_provinciales" class="java.math.BigDecimal"/>
+	<field name="compras_imp_nacionales" class="java.math.BigDecimal"/>
+	<field name="compras_percepcion" class="java.math.BigDecimal"/>
+	<field name="compras_ing_brutos" class="java.math.BigDecimal"/>
+	<field name="compras_tasa_1_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_1_iva" class="java.math.BigDecimal"/>
+	<field name="compras_tasa_2_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_2_iva" class="java.math.BigDecimal"/>
+	<field name="compras_tasa_3_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_3_iva" class="java.math.BigDecimal"/>
+	<field name="compras_tasa_4_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_4_iva" class="java.math.BigDecimal"/>
+	<field name="compras_tasa_5_iva" class="java.math.BigDecimal"/>
+	<field name="compras_importe_5_iva" class="java.math.BigDecimal"/>
+	<field name="compras_perc_iva" class="java.math.BigDecimal"/>
+	<field name="compras_perc_dgr" class="java.math.BigDecimal"/>
+	<field name="compras_imp_internos" class="java.math.BigDecimal"/>
+	<field name="compras_total" class="java.math.BigDecimal"/>
+	<field name="proveedores_id" class="java.lang.Integer"/>
+	<field name="proveedores_denominacion" class="java.lang.String"/>
+	<field name="proveedores_documento_impositivo" class="java.lang.String"/>
+	<field name="parametros_id" class="java.lang.Integer"/>
+	<field name="parametros_denominacion" class="java.lang.String"/>
+	<field name="parametros_domicilio" class="java.lang.String"/>
+	<field name="parametros_localidad" class="java.lang.String"/>
+	<field name="parametros_id_provincia" class="java.lang.Integer"/>
+	<field name="parametros_fecha_inicio" class="java.sql.Date"/>
+	<field name="parametros_cuit" class="java.lang.String"/>
+	<field name="parametros_id_tipo_responsable" class="java.lang.Integer"/>
+	<field name="parametros_nro_agente_retenc" class="java.lang.Integer"/>
+	<field name="parametros_nro_establec" class="java.lang.Integer"/>
+	<field name="parametros_enc_linea1_izq" class="java.lang.String"/>
+	<field name="parametros_enc_linea2_izq" class="java.lang.String"/>
+	<field name="parametros_enc_linea3_izq" class="java.lang.String"/>
+	<field name="parametros_enc_linea1_der" class="java.lang.String"/>
+	<field name="parametros_enc_linea2_der" class="java.lang.String"/>
+	<field name="parametros_enc_linea3_der" class="java.lang.String"/>
+	<field name="parametros_fecha_desde" class="java.sql.Date"/>
+	<field name="parametros_fecha_hasta" class="java.sql.Date"/>
+	<variable name="total_neto_gravado" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_neto_gravado}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_no_gravado" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_no_gravado}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_percepcion" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_percepcion}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_ing_brutos" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_ing_brutos}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_total" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_total}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_importe_1_iva" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_importe_1_iva}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_importe_2_iva" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_importe_2_iva}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_importe_3_iva" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_importe_3_iva}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_importe_4_iva" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_importe_4_iva}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_importe_5_iva" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_importe_5_iva}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_perc_dgr" class="java.lang.String" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_perc_dgr}]]></variableExpression>
+	</variable>
+	<variable name="total_perc_iva" class="java.lang.String" calculation="Sum">
+		<variableExpression><![CDATA[$F{compras_perc_iva}]]></variableExpression>
+	</variable>
+	<variable name="dia" class="java.lang.String"/>
+	<filterExpression><![CDATA[$F{compras_fecha}>=$P{fecha_desde}]]></filterExpression>
+	<background>
+		<band height="381" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="74" width="802" height="1" uuid="5fd3648b-5be8-4d04-9b16-41aadc51e59e"/>
+			</line>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
+			<textField pattern="d/M/yyyy" isBlankWhenNull="true">
+				<reportElement x="0" y="-18" width="181" height="20" uuid="6a7d0179-cc17-494e-88a7-cb790e7ce377"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="43" width="69" height="20" uuid="ad5b0d92-7ff8-4402-9166-05da6e0a84fc"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comprobante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="43" width="69" height="20" uuid="affe03f3-b668-4f1a-8d39-94718b7827a9"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="43" width="161" height="20" uuid="fc9db07d-6f26-45d8-819c-b548a740c9a2"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razón Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="37" width="67" height="20" uuid="93ce04a6-cc27-41c2-ae4e-2e95f0f972bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Neto Grav.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="10" width="273" height="30" uuid="a004d480-5e99-4dca-a7bd-424124e6fd68"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[REGISTRO IVA COMPRAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="532" y="37" width="67" height="20" uuid="3dbfde29-7258-4f31-bff4-530ec1d11df1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No Grav.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="599" y="37" width="67" height="20" uuid="d33b44bf-c8ff-4e49-aaee-b61253512720"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Percepc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="667" y="37" width="67" height="20" uuid="ea4ca7d2-73e9-4551-b950-e910e30728f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ing.Brutos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="58" width="161" height="20" uuid="b12722fb-b25f-43c9-919f-7e34ea4182cf"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUIT / Nro Ing. Brutos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="59" width="67" height="20" uuid="1dcb1344-8c65-4235-9ed7-436e441c49f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Imp IVA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="735" y="37" width="67" height="20" uuid="c9729015-e083-4c55-b86b-5798525d162f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="327" y="56" width="475" height="1" uuid="c19a0142-4f40-47b7-a6d4-fb05160ee1d2"/>
+			</line>
+			<staticText>
+				<reportElement x="532" y="59" width="67" height="20" uuid="cf6ba551-1fe9-4af0-adc7-45119c634b33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Imp IVA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="599" y="59" width="67" height="20" uuid="63b4e7ae-2b08-4c20-be0b-a27bbc63c87d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Imp IVA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="667" y="59" width="67" height="20" uuid="5ca2e22c-2177-4d89-ada4-e9796195d5e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Imp IVA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="735" y="59" width="67" height="20" uuid="c454543c-8d98-4b8b-a055-624b3c031c8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Imp IVA ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="685" y="-14" width="95" height="20" uuid="dac5d7c3-6440-4d77-bec1-8e19e28fe916"/>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Página "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="783" y="-14" width="18" height="20" uuid="d750dff7-54de-456e-81ca-ed596ea96593"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="14" width="264" height="14" uuid="4eff198d-03d5-4f51-a9bd-b6539b18e334"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parametros_enc_linea2_izq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="29" width="264" height="14" uuid="eaa8c913-a79f-48da-bfd1-a4cceb2886f1"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parametros_enc_linea3_izq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="264" height="14" uuid="d97e60f4-6be7-4aab-ab56-31934f60c3c7"/>
+				<textFieldExpression><![CDATA[$F{parametros_enc_linea1_izq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="2" width="268" height="14" uuid="17d41dbc-2c73-442a-89b7-10d1695636b7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{parametros_enc_linea1_der}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="14" width="268" height="14" uuid="cbcc9a42-3225-4be4-8996-ada173885b26"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parametros_enc_linea2_der}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="26" width="268" height="14" uuid="3d4a18d9-91a1-4c41-9eca-86d17c74d487"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parametros_enc_linea3_der}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="327" y="59" width="67" height="20" uuid="e8d7209d-d029-4f2e-8f8b-88ee2d0146fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perc. IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="59" width="67" height="20" uuid="538ac343-9050-45f6-b553-a32a776923cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perc. Gan.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="297" y="-18" width="100" height="20" uuid="0409bfe7-7d58-4209-8e14-acbc27805cc4"/>
+				<textFieldExpression><![CDATA[$F{parametros_fecha_desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="-18" width="100" height="20" uuid="0b9abdd3-fad6-455a-8f69-fbc245972160"/>
+				<textFieldExpression><![CDATA[$F{parametros_fecha_hasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="10" height="14" uuid="a700271c-0c86-4819-923f-1beacc43a408"/>
+				<textFieldExpression><![CDATA[$F{compras_letra}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0000" isBlankWhenNull="false">
+				<reportElement x="10" y="0" width="29" height="14" uuid="609b2097-449d-460c-b140-a97a00e3424b"/>
+				<textFieldExpression><![CDATA[$F{compras_nro_comprobante}.numberOfLeadingZeros(4)]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="532" y="0" width="67" height="14" uuid="48725a27-3053-4eb5-bbe0-3a295e90ba29"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_no_gravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="599" y="0" width="67" height="14" uuid="50360c1a-a9b4-4215-a5e4-21296efb93d1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_percepcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00000000">
+				<reportElement x="39" y="0" width="58" height="14" uuid="efad6b8e-5e9c-4bf5-9667-31cea70ff791"/>
+				<textFieldExpression><![CDATA[$F{compras_nro_comprobante}.numberOfLeadingZeros(8)]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="101" y="0" width="55" height="14" uuid="38289775-d97c-4fee-bf92-52fec9e3ad51"/>
+				<textFieldExpression><![CDATA[$F{compras_fecha}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="157" y="15" width="98" height="14" uuid="0e51b2f1-b018-463a-bedd-2478d154eda6"/>
+				<textFieldExpression><![CDATA[$F{proveedores_documento_impositivo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="157" y="0" width="237" height="14" uuid="532e8406-b12c-4e19-b2cd-5a7bd74ed6b1"/>
+				<textFieldExpression><![CDATA[$F{proveedores_denominacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="667" y="0" width="67" height="14" uuid="41973668-7220-48a0-9588-d923d1bc9b05"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_ing_brutos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="735" y="0" width="67" height="14" uuid="02fe49ff-a3c2-43ff-9796-668434771898"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="463" y="0" width="67" height="14" uuid="bfb1fc12-0a26-4f58-9f62-8ab62305eabc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_neto_gravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="463" y="15" width="67" height="14" uuid="183e6def-e997-480a-a5ef-10302aa0216c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_1_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="532" y="15" width="67" height="14" uuid="0a830ce2-8e88-41cb-9ed5-278e270044ba"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_2_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="599" y="15" width="67" height="14" uuid="2d73918c-20c5-4464-a484-25802c270a3c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_3_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="667" y="15" width="67" height="14" uuid="d1d301a1-f3a5-4178-9fd2-d0de05461903"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_4_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="735" y="15" width="67" height="14" uuid="f5268a90-5f20-4690-87be-0d1de3e957d5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_importe_5_iva}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="327" y="15" width="67" height="14" uuid="e249f2be-c21a-4806-8c46-279a8be0243d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_perc_iva}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="395" y="15" width="67" height="14" uuid="e4c46002-b5cc-4931-ae6d-1bb9b47e73d8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{compras_perc_dgr}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="253" y="2" width="70" height="17" uuid="704bec85-0179-4579-8b28-19de048be832"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total Fila 1]]></text>
+			</staticText>
+			<line>
+				<reportElement x="329" y="0" width="473" height="1" uuid="1c72c976-6210-40bb-901f-6bc804bf2acd"/>
+			</line>
+			<line>
+				<reportElement x="329" y="19" width="473" height="1" uuid="279154c5-0029-452e-9aea-1ae701728525"/>
+			</line>
+			<line>
+				<reportElement x="329" y="38" width="473" height="1" uuid="43a6a539-ecf6-489e-8529-aafeea1766b2"/>
+			</line>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="465" y="3" width="65" height="15" uuid="83437e69-36a0-4828-890d-da84f720daef"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_neto_gravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="534" y="3" width="65" height="15" uuid="3a9fbde7-85b6-442d-b06b-8d0e01e93312"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_no_gravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="601" y="3" width="65" height="15" uuid="8bddd3d3-a43d-43ba-8c09-bb24daa7f04c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_percepcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="669" y="3" width="65" height="15" uuid="ccabd6fe-f2b1-4955-acec-111172af61f6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_ing_brutos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="737" y="3" width="65" height="15" uuid="5bac1eb0-1294-4d42-91bb-6a165cfbc64a"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="465" y="19" width="65" height="15" uuid="6d71ed97-8daf-4b6b-b79b-face436f135c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_importe_1_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="534" y="19" width="65" height="15" uuid="e1185832-487e-4420-8bb9-a2ff6483def3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_importe_2_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="601" y="19" width="65" height="15" uuid="1823237a-59a9-4b17-ad80-fefa6e91fa3d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_importe_3_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="669" y="19" width="65" height="15" uuid="54bf397b-7dff-4be6-be91-70501c46de0e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_importe_4_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="737" y="19" width="65" height="15" uuid="d6d0483d-cefb-48ac-be70-c37cf465766c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_importe_5_iva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="253" y="21" width="70" height="16" uuid="bfe11938-b69b-4179-bbfc-da5472fd370b"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total Fila 2]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="397" y="19" width="65" height="15" uuid="0d9acbb1-70a4-43ef-b987-548928a09e9f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_perc_dgr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="19" width="65" height="15" uuid="782dfb74-d985-49dd-96bc-36bb40ba11f6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_perc_iva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
